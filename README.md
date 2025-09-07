@@ -1,45 +1,67 @@
-# NeuroMart
-Ecommerce project (React + Node.js + MongoDB)
+🛒 NeuroMart – MERN Based E-Commerce Platform
+<p align="center"> <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&size=24&pause=1000&color=0ED9F7&center=true&vCenter=true&random=false&width=500&lines=Welcome+to+NeuroMart!;Modern+MERN+E-Commerce+Solution;Secure+%7C+Fast+%7C+Responsive+%F0%9F%9A%80" alt="Typing SVG" /> </p> <p align="center"> <img src="https://img.shields.io/github/stars/ujjvalap/NeuroMart?style=for-the-badge&logo=github" /> <img src="https://img.shields.io/github/forks/ujjvalap/NeuroMart?style=for-the-badge&color=yellow" /> <img src="https://img.shields.io/github/issues/ujjvalap/NeuroMart?style=for-the-badge&color=brightgreen" /> <img src="https://img.shields.io/github/license/ujjvalap/NeuroMart?style=for-the-badge&color=red" /> </p>
+✨ Features
 
-# Project Setup and Installation
-Follow the steps below to setup and run the project locally.
+🔐 User Authentication (JWT + bcrypt)
 
-## 1. Install Backend Dependencies
-In the root folder of the project, run the following command to download and install all the dependencies listed in the `package.json` file:
+🛍️ Product Management (List, Categories, Search, Filter)
 
+🛒 Cart & Wishlist with persistence
+
+💳 Payments Integration (Stripe / Razorpay)
+
+📦 Order Management System
+
+👑 Admin Dashboard (Add / Edit / Delete Products)
+
+📱 Responsive UI (React + Tailwind/MUI)
+
+⚡ Tech Stack
+Layer	Technology 🚀
+Frontend	React.js, Redux Toolkit, Tailwind CSS / Material UI
+Backend	Node.js, Express.js
+Database	MongoDB (Mongoose + Atlas)
+Auth	JWT + bcrypt
+Payment	Stripe / Razorpay
+Tools	Nodemon, Axios, GitHub Actions
+🚀 Installation & Setup
+# Clone the repo
+git clone https://github.com/ujjvalap/NeuroMart.git
+cd NeuroMart
+
+🔹 Client Setup
+cd client
 npm install
+npm start
 
-
-## 2. Install Frontend Dependencies
-Navigate to the frontend folder and install the necessary frontend dependencies by running:
-
-cd frontend
+🔹 Server Setup
+cd server
 npm install
+npm start
+
+🔹 Env File (server/.env)
+PORT=5000
+MONGO_URI=your_mongodb_uri
+JWT_SECRET=your_secret_key
+STRIPE_SECRET=your_stripe_key
 
 
-## 3. Start the Frontend Server
-To start the frontend server, run the following command from the frontend folder:
 
-npm run dev
+🤝 Contributing
 
-This will start the development server for the frontend
+Fork this repo 🍴
 
+Create a new branch 🌱
 
-## 4. Start the backend Server
-In the root folder of the project , run the following command to start the backend server:
+Make your changes 💡
 
-npm run start
+Submit a PR 🎉
 
+📬 Contact
 
-## 5. Open the Application
-Both the backend and frontend servers must be running simultaneously for the application to function correctly. Once both servers are started, open your browser and navigate to:
-http://localhost:5173
+👨‍💻 Ujjval (Hacker)
+🔗 GitHub
+ | LinkedIn
+ | Portfolio
 
-5173 is frontend port
-
-
-## 6. Watch Course for MERN Project Deployment
-
-## 7. Good to have knowledge on MongoDB,ExpressJS, ReactJS , Nodejs , Redux and Redux Toolkit
-Course Link of Modern Redux and Redux Toolkit Course: https://www.udemy.com/course/react-redux-and-modern-redux-toolkit-rtk-with-async-thunk/?referralCode=0700CFC8564625D3F375 
->>>>>>> c5ca701 (Add client)
+<p align="center"> <img src="https://github.com/ujjvalap/NeuroMart/assets/0000000/ecommerce.gif" width="400px" alt="Ecommerce GIF"/> </p> <p align="center"> ⭐ Don’t forget to **star** this repo if you like it! ⭐ </p>
