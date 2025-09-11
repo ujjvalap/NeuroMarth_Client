@@ -84,7 +84,10 @@ function CreateProduct() {
 
   return (
     <>
-      <Navbar />
+    
+     < Navbar  />
+   
+     
       <PageTitle title="Create Product" />
 
       <main className="min-h-screen flex items-start justify-center bg-gradient-to-br from-indigo-50 via-white to-purple-50 py-12 px-4">
