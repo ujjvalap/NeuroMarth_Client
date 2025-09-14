@@ -56,7 +56,7 @@ function UserDashboard({ user }) {
   return (
     <>
       {/* Profile Section fixed in Navbar */}
-    <div className="fixed top-0 right-0 flex items-center h-16 pr-8 z-50 space-x backdrop-blur-md shadow-lg border-b border-gray-200">
+    <div className="fixed top-0 right-0 flex items-center h-16 pr-8 z-50 space-x   border-b ">
   {/* Profile Avatar */}
   <img
     src={user.avatar?.url || "/images/profile.png"}
@@ -64,7 +64,7 @@ function UserDashboard({ user }) {
     className="w-12 h-12 rounded-full border-2 border-indigo-500 shadow-sm object-cover mr-3"
   />
   {/* User Name */}
-  <span className="text-lg font-bold text-gray-900 hover:text-indigo-600 transition-colors">
+  <span className="text-lg font-bold text-gray-100 hover:text-gray-600 transition-colors">
     {user.name || "User"}
   </span>
   {/* Dropdown Icon Toggle */}
@@ -73,7 +73,7 @@ function UserDashboard({ user }) {
     onClick={() => setMenuVisible((v) => !v)}
     aria-label="Open user menu"
   >
-    <HiOutlineUser className="text-2xl text-indigo-700" />
+    <HiOutlineUser className="text-2xl text-amber-400" />
   </button>
 </div>
 
