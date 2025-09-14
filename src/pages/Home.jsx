@@ -32,9 +32,10 @@ function Home() {
         <>
           <PageTitle title="Home - My Website" />
           <Navbar />
+
           <ImageSlider />
 
-          <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 mb-16  ">
+          <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 mb-16">
             <h2 className="text-3xl font-extrabold tracking-tight text-gray-900 mb-8 text-center sm:text-left">
               Trending Now
             </h2>

@@ -3,8 +3,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import SearchIcon from '@mui/icons-material/Search';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
-import CloseIcon from '@mui/icons-material/Close';
-import MenuIcon from '@mui/icons-material/Menu';
 import { useSelector } from 'react-redux';
 
 function Navbar() {
@@ -13,7 +11,7 @@ function Navbar() {
     const [searchQuery, setSearchQuery] = useState("");
 
     const toggleSearch = () => setIsSearchOpen(!isSearchOpen);
-    const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+   
 
     const { isAuthenticated } = useSelector(state => state.user);
     const { cartItems } = useSelector(state => state.cart);
@@ -31,8 +29,8 @@ function Navbar() {
     };
 
     return (
-        <nav className="fixed top-0 w-full bg-slate-300 shadow-sm z-50">
-            <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+        <nav className="fixed top-0 w-full bg-slate-300 shadow-sm z-50 ">
+            <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between ">
                 {/* Logo */}
 
                 <div>
@@ -112,11 +110,7 @@ function Navbar() {
                             <PersonAddIcon />
                         </Link>
                     )}
-
-                    {/* Mobile menu button */}
-                    <div className="hidden cursor-pointer md:ml-4 md:block" onClick={toggleMenu}>
-                        {isMenuOpen ? <CloseIcon className="text-gray-700 hover:text-blue-500 transition-colors duration-200 cursor-pointer" /> : <MenuIcon className="text-gray-700 hover:text-blue-500 transition-colors duration-200 cursor-pointer" />}
-                    </div>
+                    
                 </div>
             </div>
 
@@ -142,3 +136,4 @@ function Navbar() {
 }
 
 export default Navbar;
+
