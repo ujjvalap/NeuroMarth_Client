@@ -5,12 +5,12 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/api': {                  // Ye frontend ke /api requests ko intercept karega
-        target: 'https://neuromart-server.onrender.com',
-        changeOrigin: true,      // Backend ko request ke origin ko frontend ki tarah dikhaega
-        secure: true,            // HTTPS backend ke liye
+      '/api': {
+        target: 'https://neuromart-server.onrender.com', // No trailing slash
+        changeOrigin: true,
+        secure: true,
+        rewrite: (path) => path.replace(/^\/api/, '') // "/api" ko backend ke request se hata dega
       }
     }
   }
 })
-
