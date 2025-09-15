@@ -1,6 +1,7 @@
 import {createSlice,createAsyncThunk} from '@reduxjs/toolkit';
 import axios from 'axios';
 
+
 // Register API
 export const register=createAsyncThunk('user/register',async (userData,{rejectWithValue})=>{
     try{
@@ -301,3 +302,7 @@ const userSlice=createSlice({
 
 export const {removeErrors,removeSuccess}=userSlice.actions;
 export default userSlice.reducer;
+
+
+
+
