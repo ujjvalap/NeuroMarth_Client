@@ -6,7 +6,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://neuromart-server.onrender.com/',
+        target: 'https://neuromart-server.onrender.com',
         changeOrigin: true,
         secure: true,
       }
