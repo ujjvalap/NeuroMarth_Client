@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
-import PageTitle from "../components/PageTitle";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+import PageTitle from "../service/page/PageTitle";
+import Navbar from "../components/home/Navbar";
+import Footer from "../components/home/Footer";
 import { useDispatch, useSelector } from "react-redux";
-import Product from "../components/Product";
-import { getProduct, removeErrors } from "../features/products/productSlice";
+import Product from "../components/product/Product";
+import { getProduct, removeErrors } from "../redux/products/productSlice";
 import Loader from "../shared/Loader";
 import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import NoProducts from "../components/NoProducts";
-import Pagination from "../components/Pagination";
+import NoProducts from "../components/product/NoProducts";
+import Pagination from "../service/page/Pagination";
 
 function Products() {
   const { loading, error, products, resultsPerPage, productCount } = useSelector(

@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
-import Footer from "../components/Footer";
-import Navbar from "../components/Navbar";
-import ImageSlider from "../components/ImageSlider";
-import Product from "../components/Product";
-import PageTitle from "../components/PageTitle";
+import Footer from "../components/home/Footer";
+import Navbar from "../components/home/Navbar";
+import ImageSlider from "../components/home/ImageSlider";
+import Product from "../components/product/Product";
+import PageTitle from "../service/page/PageTitle";
 import Loader from "../shared/Loader";
 import { useDispatch, useSelector } from "react-redux";
-import { getProduct, removeErrors } from "../features/products/productSlice";
+import { getProduct, removeErrors } from "../redux/products/productSlice";
 import { toast } from "react-toastify";
 
 function Home() {

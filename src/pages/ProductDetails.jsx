@@ -199,10 +199,10 @@
 
 
 import React, { useEffect, useState } from "react";
-import PageTitle from "../components/PageTitle";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
-import Rating from "../components/Rating";
+import PageTitle from "../service/page/PageTitle";
+import Navbar from "../components/home/Navbar";
+import Footer from "../components/home/Footer";
+import Rating from "../components/user/Rating";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import {
@@ -210,10 +210,10 @@ import {
   getProductDetails,
   removeErrors,
   removeSuccess,
-} from "../features/products/productSlice";
+} from "../redux/products/productSlice";
 import { toast } from "react-toastify";
 import Loader from "../shared/Loader";
-import { addItemsToCart, removeMessage } from "../features/cart/cartSlice";
+import { addItemsToCart, removeMessage } from "../redux/cart/cartSlice";
 
 function ProductDetails() {
   const [userRating, setUserRating] = useState(0);
