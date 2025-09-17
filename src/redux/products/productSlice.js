@@ -143,7 +143,7 @@ export const getProduct = createAsyncThunk(
       if (category) link += `&category=${category}`;
       if (keyword) link += `&keyword=${encodeURIComponent(keyword)}`;
 
-      const { data } = await Api.get(link, getConfig);
+      const { data } = await Api.get(link, getConfig());
       return data;
     } catch (error) {
       return rejectWithValue(error.response?.data || "An error occurred");
@@ -156,7 +156,7 @@ export const getProductDetails = createAsyncThunk(
   "product/getProductDetails",
   async (id, { rejectWithValue }) => {
     try {
-      const { data } = await Api.get(`/api/v1/product/${id}`, getConfig);
+      const { data } = await Api.get(`/api/v1/product/${id}`, getConfig());
       return data;
     } catch (error) {
       return rejectWithValue(error.response?.data || "An error occurred");
@@ -172,7 +172,7 @@ export const createReview = createAsyncThunk(
       const { data } = await Api.put(
         "/api/v1/review",
         { rating, comment, productId },
-        getConfig
+        getConfig()
       );
       return data;
     } catch (error) {

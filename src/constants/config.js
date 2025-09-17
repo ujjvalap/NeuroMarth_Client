@@ -1,17 +1,11 @@
-// ---------------- CONFIG ---------------- //
-export const baseConfig = {
-  headers: { "Content-Type": "application/json" },
-  withCredentials: true,
+// Base JSON config
+export const getConfig = (type = "json") => {
+  const token = localStorage.getItem("token"); // Read token dynamically every time
+  return {
+    headers: {
+      "Content-Type": type === "form" ? "multipart/form-data" : "application/json",
+      ...(token && { Authorization: `Bearer ${token}` }),
+    },
+    withCredentials: true,
+  };
 };
-
-export const formDataConfig = {
-  headers: { "Content-Type": "multipart/form-data" },
-  withCredentials: true,
-};
-
-// Utility to select config dynamically
- export const getConfig = (type = "json") => (type === "form" ? formDataConfig : baseConfig);
-
-
-
- 

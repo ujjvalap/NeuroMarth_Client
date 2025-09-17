@@ -120,7 +120,7 @@ export const createOrder = createAsyncThunk(
   "order/createOrder",
   async (order, { rejectWithValue }) => {
     try {
-      const { data } = await Api.post("/api/v1/new/order", order, getConfig);
+      const { data } = await Api.post("/api/v1/new/order", order, getConfig());
       return data;
     } catch (error) {
       return rejectWithValue(error.response?.data || "Order Creating Failed");
@@ -133,7 +133,7 @@ export const getAllMyOrders = createAsyncThunk(
   "order/getAllMyOrders",
   async (_, { rejectWithValue }) => {
     try {
-      const { data } = await Api.get("/api/v1/orders/user", getConfig);
+      const { data } = await Api.get("/api/v1/orders/user", getConfig());
       return data;
     } catch (error) {
       return rejectWithValue(error.response?.data || "Failed to fetch orders");
@@ -146,7 +146,7 @@ export const getOrderDetails = createAsyncThunk(
   "order/getOrderDetails",
   async (orderID, { rejectWithValue }) => {
     try {
-      const { data } = await Api.get(`/api/v1/order/${orderID}`, getConfig);
+      const { data } = await Api.get(`/api/v1/order/${orderID}`, getConfig());
       return data;
     } catch (error) {
       return rejectWithValue(error.response?.data || "Failed to fetch order details");

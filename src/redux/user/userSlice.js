@@ -324,6 +324,7 @@ export const register = createAsyncThunk(
   async (userData, { rejectWithValue }) => {
     try {
       const { data } = await Api.post("/api/v1/register", userData, getConfig("form"));
+
       return data;
     } catch (error) {
       return rejectWithValue(error.response?.data || { message: "Registration failed" });
@@ -337,6 +338,8 @@ export const login = createAsyncThunk(
   async ({ email, password }, { rejectWithValue }) => {
     try {
       const { data } = await Api.post("/api/v1/login", { email, password }, getConfig());
+       
+    localStorage.setItem("token", data.token); // <-- store token for later use
       return data;
     } catch (error) {
       return rejectWithValue(error.response?.data || { message: "Login failed" });
@@ -508,14 +511,15 @@ const userSlice = createSlice({
 
     // ------------------ LOGOUT ------------------ //
     builder
-      .addCase(logout.pending, handlePending)
-      .addCase(logout.fulfilled, (state) => {
-        state.loading = false;
-        state.user = null;
-        state.isAuthenticated = false;
+            .addCase(logout.fulfilled, (state) => {
+         state.loading = false;
+         state.user = null;
+         state.isAuthenticated = false;
         localStorage.removeItem("user");
-        localStorage.removeItem("isAuthenticated");
-      })
+         localStorage.removeItem("isAuthenticated");
+         localStorage.removeItem("token"); // remove token too
+})
+
       .addCase(logout.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload?.message || "Logout failed";

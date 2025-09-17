@@ -96,7 +96,7 @@ export const addItemsToCart = createAsyncThunk(
   "cart/addItemsToCart",
   async ({ id, quantity }, { rejectWithValue }) => {
     try {
-      const { data } = await Api.get(`/api/v1/product/${id}`, getConfig); // config used here
+      const { data } = await Api.get(`/api/v1/product/${id}`, getConfig()); // config used here
       return {
         product: data.product._id,
         name: data.product.name,
