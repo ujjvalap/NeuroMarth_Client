@@ -6,6 +6,7 @@ export const getConfig = (type = "json") => {
       "Content-Type": type === "form" ? "multipart/form-data" : "application/json",
       ...(token && { Authorization: `Bearer ${token}` }),
     },
+    
     withCredentials: true,
   };
 };

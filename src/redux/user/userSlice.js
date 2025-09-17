@@ -340,6 +340,8 @@ export const login = createAsyncThunk(
       const { data } = await Api.post("/api/v1/login", { email, password }, getConfig());
        
     localStorage.setItem("token", data.token); // <-- store token for later use
+    console.log("Token in localStorage:", localStorage.getItem("token"));
+
       return data;
     } catch (error) {
       return rejectWithValue(error.response?.data || { message: "Login failed" });
