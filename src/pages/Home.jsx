@@ -30,7 +30,7 @@ function Home() {
         <Loader />
       ) : (
         <>
-          <PageTitle title="Home - My Website" />
+          <PageTitle title="Home Page" />
           <Navbar />
 
           <ImageSlider />
