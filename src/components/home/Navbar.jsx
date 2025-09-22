@@ -1,193 +1,183 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import SearchIcon from "@mui/icons-material/Search";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import PersonAddIcon from "@mui/icons-material/PersonAdd";
-import MenuIcon from "@mui/icons-material/Menu";
-import CloseIcon from "@mui/icons-material/Close";
 import { useSelector } from "react-redux";
+import { HiOutlineUser, HiOutlineShoppingCart } from "react-icons/hi";
+import { FaSearch } from "react-icons/fa";
 
 function Navbar() {
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  const { isAuthenticated } = useSelector((state) => state.user);
-  const { cartItems } = useSelector((state) => state.cart);
-
+  const [mobileMenu, setMobileMenu] = useState(false);
   const navigate = useNavigate();
 
-  const handleSearchSubmit = (e) => {
+  const { isAuthenticated, user } = useSelector((state) => state.user);
+  const { cartItems } = useSelector((state) => state.cart);
+
+  const handleSearch = (e) => {
     e.preventDefault();
     if (searchQuery.trim()) {
       navigate(`/products?keyword=${encodeURIComponent(searchQuery.trim())}`);
     } else {
-      navigate(`/products`);
+      navigate("/products");
     }
     setSearchQuery("");
-    setIsSearchOpen(false);
+    setMobileMenu(false); // close mobile menu after search
   };
 
   return (
-    <nav className="fixed top-0 w-full bg-indigo-700 shadow-lg z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-        {/* Logo */}
-        <Link
-          to="/"
-          className="text-3xl md:text-4xl font-extrabold tracking-wide 
-            bg-gradient-to-r from-pink-500 via-yellow-400 to-indigo-500 
-            bg-clip-text text-transparent drop-shadow-lg
-            hover:scale-110 hover:rotate-1 hover:skew-x-1
-            transition-all duration-300 ease-in-out"
-        >
-          Neuromart
-        </Link>
-
-        {/* Desktop Nav */}
-        <div className="hidden md:flex md:items-center md:gap-8">
-          <ul className="flex gap-8">
-            <li>
-              <Link
-                to="/"
-                className="text-white hover:text-indigo-200 font-medium transition-colors"
-              >
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/products"
-                className="text-white hover:text-indigo-200 font-medium transition-colors"
-              >
-                Products
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/about-us"
-                className="text-white hover:text-indigo-200 font-medium transition-colors"
-              >
-                About Us
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/contact-us"
-                className="text-white hover:text-indigo-200 font-medium transition-colors"
-              >
-                Contact Us
-              </Link>
-            </li>
-          </ul>
-        </div>
-
-        {/* Right Side: Search + Cart + Auth */}
-        <div className="flex items-center gap-6">
-          {/* Search */}
-          <form
-            className={`flex items-center transition-all duration-300 ${
-              isSearchOpen ? "w-52" : "w-10"
-            }`}
-            onSubmit={handleSearchSubmit}
-          >
-            <input
-              type="text"
-              className={`py-1 px-3 rounded-l-md border-none focus:outline-none 
-                focus:ring-2 focus:ring-indigo-400 transition-all bg-white 
-                text-indigo-700 ${isSearchOpen ? "w-full opacity-100" : "w-0 opacity-0"}`}
-              placeholder="Search..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              autoFocus={isSearchOpen}
-            />
-            <button
-              type="button"
-              className="p-1 text-white hover:text-indigo-300 transition-colors"
-              onClick={() => setIsSearchOpen((v) => !v)}
-            >
-              <SearchIcon />
-            </button>
-          </form>
-
-          {/* Cart */}
-          <div className="relative">
-            <Link
-              to="/cart"
-              className="text-white hover:text-indigo-200 transition-colors"
-            >
-              <ShoppingCartIcon />
-              {cartItems.length > 0 && (
-                <span className="absolute -top-2 -right-2 bg-pink-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
-                  {cartItems.length}
-                </span>
-              )}
+    <>
+      {/* Fixed Navbar */}
+      <nav className="fixed top-0 left-0 w-full z-50 bg-blue-600 shadow-md">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between h-16 items-center">
+            {/* Logo */}
+            <Link to="/" className="text-2xl font-bold hover:text-gray-100">
+              Neuromart
             </Link>
+
+            {/* Desktop Menu */}
+            <div className="hidden md:flex flex-1 ml-8 items-center justify-between">
+              {/* Search Bar */}
+              <form
+                onSubmit={handleSearch}
+                className="flex flex-1 max-w-xl items-center rounded overflow-hidden bg-white shadow-sm"
+              >
+                <input
+                  type="text"
+                  placeholder="Search for products, brands..."
+                  className="flex-1 px-4 py-2 text-gray-800 focus:outline-none"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                />
+                <button
+                  type="submit"
+                  className="px-3 bg-yellow-400 text-black hover:bg-yellow-500 transition"
+                >
+                  <FaSearch />
+                </button>
+              </form>
+
+              {/* Links & Icons */}
+              <div className="flex items-center gap-6 ml-6">
+                <Link to="/" className="hover:text-gray-200 font-medium">
+                  Home
+                </Link>
+                <Link to="/products" className="hover:text-gray-200 font-medium">
+                  Products
+                </Link>
+                <Link to="/about-us" className="hover:text-gray-200 font-medium">
+                  About Us
+                </Link>
+                <Link to="/contact-us" className="hover:text-gray-200 font-medium">
+                  Contact
+                </Link>
+
+                {/* Cart */}
+                <Link
+                  to="/cart"
+                  className="relative flex items-center hover:text-gray-200"
+                >
+                  <HiOutlineShoppingCart className="text-2xl" />
+                  {cartItems.length > 0 && (
+                    <span className="absolute -top-2 -right-2 h-5 w-5 text-xs bg-yellow-400 text-black font-bold rounded-full flex items-center justify-center">
+                      {cartItems.length}
+                    </span>
+                  )}
+                </Link>
+
+                {/* Profile/Login */}
+                {isAuthenticated ? (
+                  <Link
+                    to="/profile"
+                    className="flex items-center gap-2 hover:text-gray-200"
+                  >
+                    <img
+                      src={user.avatar?.url || "/images/profile.png"}
+                      alt="Profile"
+                      className="w-8 h-8 rounded-full border-2 border-white"
+                    />
+                    <span className="hidden sm:block font-semibold">{user.name}</span>
+                  </Link>
+                ) : (
+                  <Link
+                    to="/login"
+                    className="flex items-center gap-2 font-semibold hover:text-gray-200"
+                  >
+                    <HiOutlineUser className="text-2xl" />
+                    Login
+                  </Link>
+                )}
+              </div>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <div className="md:hidden flex items-center">
+              <button
+                onClick={() => setMobileMenu(!mobileMenu)}
+                className="text-white focus:outline-none text-2xl"
+                aria-label="Toggle menu"
+              >
+                {mobileMenu ? "✖" : "☰"}
+              </button>
+            </div>
           </div>
+        </div>
 
-          {/* Register / User */}
-          {!isAuthenticated && (
-            <Link
-              to="/register"
-              className="text-white hover:text-indigo-200 transition-colors flex items-center"
-            >
-              <PersonAddIcon />
+        {/* Mobile Menu */}
+        {mobileMenu && (
+          <div className="md:hidden bg-blue-600 px-4 pt-4 pb-6 space-y-3">
+            <form onSubmit={handleSearch} className="flex items-center w-full mb-2">
+              <input
+                type="text"
+                placeholder="Search products..."
+                className="flex-1 px-3 py-2 text-gray-800 rounded-l focus:outline-none"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+              <button
+                type="submit"
+                className="px-3 bg-yellow-400 text-black rounded-r hover:bg-yellow-500"
+              >
+                <FaSearch />
+              </button>
+            </form>
+
+            <Link to="/" onClick={() => setMobileMenu(false)} className="block hover:text-gray-200 font-medium">
+              Home
             </Link>
-          )}
+            <Link to="/products" onClick={() => setMobileMenu(false)} className="block hover:text-gray-200 font-medium">
+              Products
+            </Link>
+            <Link to="/about-us" onClick={() => setMobileMenu(false)} className="block hover:text-gray-200 font-medium">
+              About Us
+            </Link>
+            <Link to="/contact-us" onClick={() => setMobileMenu(false)} className="block hover:text-gray-200 font-medium">
+              Contact
+            </Link>
+            <Link to="/cart" onClick={() => setMobileMenu(false)} className="block hover:text-gray-200 font-medium">
+              Cart ({cartItems.length})
+            </Link>
+            {isAuthenticated ? (
+              <Link to="/profile" onClick={() => setMobileMenu(false)} className="flex items-center gap-2 hover:text-gray-200">
+                <img
+                  src={user.avatar?.url || "/images/profile.png"}
+                  alt="Profile"
+                  className="w-8 h-8 rounded-full border-2 border-white"
+                />
+                <span>{user.name}</span>
+              </Link>
+            ) : (
+              <Link to="/login" onClick={() => setMobileMenu(false)} className="flex items-center gap-2 font-semibold hover:text-gray-200">
+                <HiOutlineUser className="text-2xl" />
+                Login
+              </Link>
+            )}
+          </div>
+        )}
+      </nav>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsMobileMenuOpen((prev) => !prev)}
-            className="md:hidden text-white focus:outline-none"
-          >
-            {isMobileMenuOpen ? <CloseIcon /> : <MenuIcon />}
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile Menu */}
-      {isMobileMenuOpen && (
-        <div className="md:hidden bg-indigo-700 px-6 py-4 border-t border-indigo-500 shadow-md animate-fadeIn">
-          <ul className="flex flex-col gap-4">
-            <li>
-              <Link
-                to="/"
-                className="text-white hover:text-indigo-200 font-medium"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/products"
-                className="text-white hover:text-indigo-200 font-medium"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Products
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/about-us"
-                className="text-white hover:text-indigo-200 font-medium"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                About Us
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/contact-us"
-                className="text-white hover:text-indigo-200 font-medium"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Contact Us
-              </Link>
-            </li>
-          </ul>
-        </div>
-      )}
-    </nav>
+      {/* Spacer div so fixed navbar doesn’t overlap content */}
+      <div className="h-16 md:h-16"></div>
+    </>
   );
 }
 
