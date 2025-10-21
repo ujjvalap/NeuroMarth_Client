@@ -18,6 +18,7 @@ import Cart from "./components/cart/Cart";
 import Shipping from "./components/cart/Shipping";
 import OrderConfirm from "./components/cart/OrderConfirm";
 import Payment from "./components/cart/Payment";
+import About from "./components/home/About";
 import PaymentSuccess from "./components/cart/PaymentSuccess";
 import MyOrders from "./components/orders/MyOrders";
 import OrderDetails from "./components/orders/OrderDetails";
@@ -35,6 +36,7 @@ import ReviewsList from "./components/admin/ReviewsList";
 
 import NotFound from "./shared/Notfound";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
+import NotProtectedLayout from "./components/auth/NotProtectedRoute";
 import UserDashboard from "./components/user/UserDashboard";
 
 function App() {
@@ -47,13 +49,14 @@ function App() {
 
   return (
     <Router>
-      <Routes>
+      <Routes element={<NotProtectedLayout/>}>
         {/* Public Routes */}
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/password/forgot" element={<ForgotPassword />} />
         <Route path="/reset/:token" element={<ResetPassword />} />
+        <Route path="/about-us" element={<About/>}/>
 
         {/* User Protected Routes */}
         <Route element={<ProtectedRoute />}>
@@ -70,6 +73,7 @@ function App() {
           <Route path="/paymentSuccess" element={<PaymentSuccess />} />
           <Route path="/orders/user" element={<MyOrders />} />
           <Route path="/order/:orderId" element={<OrderDetails />} />
+        
         </Route>
 
         {/* Admin Protected Routes */}

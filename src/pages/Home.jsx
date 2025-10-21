@@ -64,6 +64,7 @@ import Footer from "../components/home/Footer";
 import Navbar from "../components/home/Navbar";
 import ImageSlider from "../components/home/ImageSlider";
 import Product from "../components/product/Product";
+
 import PageTitle from "../service/page/PageTitle";
 import Loader from "../shared/Loader";
 import { useDispatch, useSelector } from "react-redux";
