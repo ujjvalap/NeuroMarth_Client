@@ -6,8 +6,8 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        // target: 'https://neuromart-server.onrender.com', // your backend
-        target: 'http://localhost:5000',
+        target: 'https://neuromart-server.onrender.com', // your backend
+        // target: 'http://localhost:5000',
         changeOrigin: true,
         secure: false,
       },
